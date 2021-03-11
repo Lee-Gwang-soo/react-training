@@ -28,11 +28,14 @@ const TodosContainer = ({
 };
 
 export default connect(
-	({todos}) => ({
-		name: todos.name,
-		description: todos.description,
-		todos: todos.todos,
-	}),
+	({todos}) => {
+		console.log('todos', todos);
+		return {
+			name: todos.name,
+			description: todos.description,
+			todos: todos.todos,
+		};
+	},
 	{
 		changeInput,
 		insert,
