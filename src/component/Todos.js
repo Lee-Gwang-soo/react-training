@@ -29,18 +29,20 @@ const Todos = ({
 }) => {
 	const onSubmit = (e) => {
 		e.preventDefault();
-		onInsert(name);
-		onInsert(description);
+		onInsert(name, description);
+		// onInsert(description);
 		onChangeInput('');
 	};
-	const onChange = (e) => onChangeInput(e.target.value);
-
+	const onChange = (key) => (e) => {
+		console.log('key', key, e.target.value);
+		onChangeInput(key, e.target.value);
+	};
 	return (
 		<div className='todolist'>
 			<h1 className='heading'>TodoList - Redux</h1>
 			<form onSubmit={onSubmit}>
-				<input value={name} onChange={onChange} />
-				<input value={description} onChange={onChange} />
+				<input value={name} onChange={onChange('name')} />
+				<input value={description} onChange={onChange('description')} />
 				<button type='submit'>등록</button>
 			</form>
 			<div>

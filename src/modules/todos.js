@@ -6,11 +6,19 @@ const UPDATE = 'todos/UPDATE';
 const TOGGLE = 'todos/TOGGLE';
 const REMOVE = 'todos/REMOVE';
 
-export const changeInput = (name, description) => ({
-	type: CHANGE_INPUT,
-	name,
-	description,
-});
+export const changeInput = (key, value) => {
+	return {
+		type: CHANGE_INPUT,
+		key,
+		value,
+	};
+};
+
+// export const changeInput = (name, description) => ({
+// 	type: CHANGE_INPUT,
+// 	name,
+// 	description,
+// });
 
 export const update = (name) => ({
 	type: UPDATE,
@@ -44,7 +52,8 @@ export const remove = (id) => ({
 var now = new Date();
 var current = `${now.getFullYear()}/${now.getMonth()}/${now.getDate()}/ ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
 const initialState = {
-	input: '',
+	name: '',
+	description: '',
 	todos: [
 		{
 			id: 1,
@@ -89,8 +98,7 @@ function todos(state = initialState, action) {
 		case CHANGE_INPUT:
 			return {
 				...state,
-				name: action.name,
-				description: action.description,
+				[action.key]: action.value,
 			};
 		case INSERT:
 			return {
