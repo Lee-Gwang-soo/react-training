@@ -1,18 +1,18 @@
 import React from 'react';
 
-const TodoItem = ({todo, onToggle, onRemove}) => {
+const TodoItem = ({todo, onsetToggle, onsetRemove}) => {
 	return (
 		<div className='todos'>
 			<input
 				type='checkbox'
-				onClick={() => onToggle(todo.id)}
+				onClick={() => onsetToggle(todo.id)}
 				checked={todo.done}
 				readOnly={true}
 			/>
 			<span style={{textDecoration: todo.done ? 'line-through' : 'none'}}>
 				{todo.name}
 			</span>
-			<button onClick={() => onRemove(todo.id)}>삭제</button>
+			<button onClick={() => onsetRemove(todo.id)}>삭제</button>
 		</div>
 	);
 };
@@ -21,21 +21,20 @@ const Todos = ({
 	name,
 	description,
 	todos,
-	onChangeInput,
-	onInsert,
-	onToggle,
-	onRemove,
-	onUpdate,
+	onsetChangeInput,
+	onsetInsert,
+	onsetToggle,
+	onsetRemove,
 }) => {
 	const onSubmit = (e) => {
 		e.preventDefault();
-		onInsert(name, description);
+		onsetInsert(name, description);
 		// onInsert(description);
-		onChangeInput('');
+		onsetChangeInput('');
 	};
 	const onChange = (key) => (e) => {
 		console.log('key', key, e.target.value);
-		onChangeInput(key, e.target.value);
+		onsetChangeInput(key, e.target.value);
 	};
 	return (
 		<div className='todolist'>
@@ -54,8 +53,8 @@ const Todos = ({
 					<TodoItem
 						todo={todo}
 						key={todo.id}
-						onToggle={onToggle}
-						onRemove={onRemove}
+						onsetToggle={onsetToggle}
+						onsetRemove={onsetRemove}
 					/>
 				))}
 			</div>
